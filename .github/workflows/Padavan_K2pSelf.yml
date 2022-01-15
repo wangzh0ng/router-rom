@@ -72,15 +72,17 @@ jobs:
     - name: 准备编译环境
       if: true
       run: | 
-        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
-        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
-        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
-        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin  > /dev/null
+        #sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        #fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        #texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        #libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin  > /dev/null
+        sudo apt update
+        sudo apt install git libtool-bin gperf python3-docutils autopoint gettext
   
     - name: 下载源码
       run: |
         git clone --depth=1 https://github.com/hanwckf/rt-n56u.git ${{ env.DIR }}  > /dev/null
-        sh K2pSelf.sh
+        ls && sh K2pSelf.sh
         cd ${{ env.DIR }}/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
         pwd
