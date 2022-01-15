@@ -78,13 +78,14 @@ jobs:
         #libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin  > /dev/null
         sudo apt update
         sudo apt install curl git libtool-bin gperf python3-docutils autopoint gettext
+        pwd && ls -al
   
     - name: 下载源码
       run: |
         git clone --depth=1 https://github.com/hanwckf/rt-n56u.git ${{ env.DIR }}  > /dev/null
-        curl https://raw.githubusercontent.com/wangzh0ng/router-rom/main/K2pSelf.sh | sh
-        #echo "`ls /opt/rt-n56u/ -al`"
-        #chmod +x /opt/rt-n56u/K2pSelf.sh && . /opt/rt-n56u/K2pSelf.sh
+        curl https://raw.githubusercontent.com/wangzh0ng/router-rom/main/K2pSelf.sh > /opt/rt-n56u/K2pSelf.sh 
+        echo "`ls /opt/rt-n56u/ -al`"
+        chmod +x /opt/rt-n56u/K2pSelf.sh && . /opt/rt-n56u/K2pSelf.sh
         cd ${{ env.DIR }}/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
         pwd
