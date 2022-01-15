@@ -8,11 +8,11 @@ sudo sed -i 's/CONFIG_FIRMWARE_INCLUDE_VLMCSD=n/CONFIG_FIRMWARE_INCLUDE_VLMCSD=y
 
 ##修改主界面的版本号，将后面一小串小版本号去掉
 echo "change defaults"
-cd ${{ env.DIR }}/trunk/
+cd /opt/rt-n56u/trunk/
 sudo sed -i '3c FIRMWARE_BUILDS_REV=' versions.inc
 
 ##修改WIFI的地区，源码中默认2.4G是中国区，5G是美国区，统一改成中国区。
-cd ${{ env.DIR }}/trunk/user/shared/
+cd /opt/rt-n56u/trunk/user/shared/
 sudo sed -i 's/"US"/"CN"/g' defaults.h
 
 ##修改NTP时钟同步服务器；
@@ -37,14 +37,14 @@ sudo sed -i 's/"wan_ppp_lcp", "1"/"wan_ppp_lcp", "0"/g' defaults.c
 
 ##修改中文翻译字典，统一将2.4G改成2.4GHz、5G改成5GHz，更加严谨。
 ##注意批量修改的先后顺序，关键字匹配时，如果原来就是2.4GHz，会将前面的2.4G匹配成2.4GHz，再加上后面的Hz，结果会变成2.4GHzHz。
-cd ${{ env.DIR }}/trunk/user/www/dict/
+cd /opt/rt-n56u/trunk/user/www/dict/
 sudo sed -i 's/2.4G/2.4GHz/g' CN.dict
 sudo sed -i 's/5G/5GHz/g' CN.dict
 sudo sed -i 's/GO_2G=2.4GHz 设置/GO_2G=转到 2.4GHz 设置/g' CN.dict
 sudo sed -i 's/GO_5GHz=5GHz 设置/GO_5G=转到 5GHz 设置/g' CN.dict
 
 ##修改界面中的字符，将2.4G改成2.4GHz、5G改成5GHz，更加严谨。
-cd ${{ env.DIR }}/trunk/user/www/n56u_ribbon_fixed/
+cd /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/
 sudo sed -i 's/2.4G/2.4GHz/g' state.js
 sudo sed -i 's/value="5G"/value="5GHz"/g' state.js
 
@@ -52,16 +52,16 @@ sudo sed -i 's/value="5G"/value="5GHz"/g' state.js
 ##部分原来就是192.168.2.1的，又写了一遍，是方便之后编译其他固件时准备的。
 ##源码中修改的不完整，导致部分界面还显示错误的IP地址，应该是192.168.2.1的，还显示192.168.1.1。
 echo "change ip to 192.168.2.1"
-cd ${{ env.DIR }}/trunk/user/shared/
+cd /opt/rt-n56u/trunk/user/shared/
 sudo sed -i 's/"192.168.2.1"/"192.168.2.1"/g' defaults.h
 sudo sed -i 's/"192.168.2.100"/"192.168.2.101"/g' defaults.h
 sudo sed -i 's/"192.168.2.244"/"192.168.2.199"/g' defaults.h
 
-cd ${{ env.DIR }}/trunk/user/www/dict/
+cd /opt/rt-n56u/trunk/user/www/dict/
 sudo sed -i 's/192.168.2.1/192.168.2.1/g' CN.dict
 sudo sed -i 's/192.168.2.1/192.168.2.1/g' EN.footer
 
-cd ${{ env.DIR }}/trunk/user/www/n56u_ribbon_fixed/
+cd /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/
 sudo sed -i 's/192.168.2.1/192.168.2.1/g' Restarting.asp
 sudo sed -i 's/192.168.1.1/192.168.2.1/g' Advanced_APLAN_Content.asp
 sudo sed -i 's/192.168.1.1/192.168.2.1/g' Advanced_LAN_Content.asp
