@@ -81,8 +81,9 @@ jobs:
   
     - name: 下载源码
       run: |
+        echo "`ls . -al`"
         git clone --depth=1 https://github.com/hanwckf/rt-n56u.git ${{ env.DIR }}  > /dev/null
-        echo "`ls / -al`"
+        echo "`ls /opt/rt-n56u/trunk/ -al`"
         curl https://raw.githubusercontent.com/wangzh0ng/router-rom/main/K2pSelf.sh | sh
         cd ${{ env.DIR }}/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
