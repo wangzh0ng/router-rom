@@ -1,6 +1,6 @@
 ##修改模板中的配置，此处是将所有的y改成n，即全部关闭，然后针对IPV6和中文语言的选项，单独改成y。
 echo "define templates"
-cd ${{ env.DIR }}/trunk/configs/templates/
+cd /opt/rt-n56u/trunk/configs/templates/
 sudo sed -i 's/=y/=n/g' *.config
 sudo sed -i 's/CONFIG_FIRMWARE_ENABLE_IPV6=n/CONFIG_FIRMWARE_ENABLE_IPV6=y/g' *.config
 sudo sed -i 's/CONFIG_FIRMWARE_INCLUDE_LANG_CN=n/CONFIG_FIRMWARE_INCLUDE_LANG_CN=y/g' *.config
